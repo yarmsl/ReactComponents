@@ -1,13 +1,12 @@
-
 import Header from './Header';
+import Main from './Main';
+
 
 function App() {
   return (
-    <div className="wrapper">
+    <div className="wrapper theme">
       <Header />
-      <main className="main">
-        Привет Мир!
-      </main>
+      <Main />
     </div>
   );
 }
