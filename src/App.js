@@ -1,13 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Header from './Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <main className="App-main">
+    <div className="wrapper">
+      <Header />
+      <main className="main">
         Привет Мир!
       </main>
     </div>
