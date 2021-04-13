@@ -28,7 +28,6 @@ export default function Main() {
       for (let key in obj.category) {
          arr = arr.concat([{ id: obj.category[key].id, name: obj.category[key].name }]);
       }
-      console.log(arr);
       arr = (
          <select onChange={(e) => { handleChange(e) }}>
             {arr.map(item => {
@@ -38,49 +37,30 @@ export default function Main() {
             })}
          </select>
       )
-      console.log(arr);
    }
 
    categories(NavigateObject);
 
-   const navObj = NavigateObject.category;
+   const testObj = NavigateObject.category.real_estate.subCategories.commercial_property_second.subCategories.Building_estate.subCategories.rent_building.fields['Сдать в аренду']
 
-   // function sort(obj) {
-   //    for (let key in obj) {
-   //       if (typeof (obj[key].subCategories) === 'object') {
-   //          for (let i in obj[key].subCategories) {
-   //             console.log(obj[key].subCategories[i])
-   //          }
-   //       }
-   //    }
-   // }
+   console.log(testOoj);
+function sort(obj) {
+      for (let key in obj) {
+         if (typeof (obj[key].subCategories) === 'object') {
+            for (let i in obj[key].subCategories) {
+               console.log(obj[key].subCategories[i])
+            }
+         }
+      }
+   }
 
-
-   // let arr2 = [
-   //    { id: 1, name: 'Acura' },
-   //    { id: 2, name: 'Lexus' },
-   //    { id: 3, name: 'Infinity' },
-   //    { id: 4, name: 'Mazda' },
-   //    { id: 5, name: 'Subaru' }
-   // ];
-
-   // const output = arr2.forEach(item => {
-   //    console.log(item.name)
-   // });
-
-   // const nO = [navObj];
-
-   // let iip = nO.map((item, i) => {
-   //    i = Object.keys(item);
-   //    return (<div>{item.i}</div>)
-   // })
 
    return (
       <main className="main">
 
          {arr}
          <div>Выбрано: {nav.category}</div>
-         {/* {iip} */}
+
       </main>
    )
 }
