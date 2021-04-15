@@ -1,0 +1,87 @@
+.getPhotoUpload {
+    width: 490px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.getPhotoUpload>* {
+    margin-bottom: 14px;
+}
+.getPhotoUpload>*:nth-child(4n-2) {
+    margin: 0 7px 14px 14px;
+}
+.getPhotoUpload>*:nth-child(4n-1) {
+    margin: 0 14px 14px 7px;
+}
+.getPhotoCard {
+    position: relative;
+    width: 112px;
+    min-width: 112px;
+    max-width: 112px;
+    height: 130px;
+    min-height: 130px;
+    max-height: 130px;
+    background: no-repeat center top 24px url(./img/camPH.svg), #E9E9E9;
+    border-radius: 1px;
+    overflow: hidden;
+    
+}
+.getPhotoCard img {
+    position: absolute;
+    z-index: 5;
+    min-height: 100%;
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    border-radius: 1px;
+}
+.getPhotoRotate {
+    display: block;
+    position: absolute;
+    z-index: 7;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: no-repeat center center url(./img/rotate.svg);
+    transition: all 350ms ease-in-out;
+}
+.getPhotoRotate:hover {
+    transition: all 350ms ease-in-out;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+.getPhotoDelete {
+    display: block;
+    position: absolute;
+    z-index: 7;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    background: no-repeat center center url(./img/close.svg);
+    transition: all 350ms ease-in-out;
+}
+.getPhotoDelete:hover {
+    transition: all 350ms ease-in-out;
+    transform: scale(0.8);
+    cursor: pointer;
+}
+
+.getPhotoNotif {
+    position: absolute;
+    z-index: 2;
+    top: 78px;
+    color: #c7c7c7;
+    font-size: 12px;
+    text-align: center;
+}
+
+.file-input {
+    display: none;
+} 
