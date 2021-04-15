@@ -1,18 +1,18 @@
-import React, {useState} from 'react'
-import NavigateObject from '../json/navigateObject.json';
+import React, { useState } from 'react'
+import NavigateObject from '../../json/navigateObject.json';
 
 
-   // for (let key in NavigateObject.category) {
-   //    if (typeof(NavigateObject.category[key].subCategories) === 'object') {
-   //       for (let i in NavigateObject.category[key].subCategories) {
-   //          console.log(NavigateObject.category[key].subCategories[i]);
-   //       }
-   //    } else {
-   //       console.log(NavigateObject.category[key]);
-   //    }
-   // }
+// for (let key in NavigateObject.category) {
+//    if (typeof(NavigateObject.category[key].subCategories) === 'object') {
+//       for (let i in NavigateObject.category[key].subCategories) {
+//          console.log(NavigateObject.category[key].subCategories[i]);
+//       }
+//    } else {
+//       console.log(NavigateObject.category[key]);
+//    }
+// }
 
-  
+
 
 const Parcer = () => {
 
@@ -44,8 +44,8 @@ const Parcer = () => {
 
    const testObj = NavigateObject.category.real_estate.subCategories.commercial_property_second.subCategories.Building_estate.subCategories.rent_building.fields['Сдать в аренду']
 
-   
-function sort(obj) {
+
+   function sort(obj) {
       for (let key in obj) {
          if (typeof (obj[key].subCategories) === 'object') {
             for (let i in obj[key].subCategories) {
@@ -57,7 +57,7 @@ function sort(obj) {
 
    return (
       <div>
-          {arr}
+         {arr}
          <div>Выбрано: {nav.category}</div>
       </div>
    )

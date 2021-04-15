@@ -20,7 +20,6 @@
 }
 
 .modalWindow {
-    font-family: 'Ubuntu';
     z-index: 201;
     position: absolute;
     top: 0;
@@ -60,7 +59,7 @@
     position: fixed;
     font-size: 18px;
     font-weight: 500;
-    
+    text-align: left;
     padding-bottom: 10px;
     border-bottom: 1px solid #E9E9E9;
 }
@@ -88,7 +87,7 @@
     right: -44px;
     width: 32px;
     height: 32px;
-    background: no-repeat center center url(../../images/modal/close_modal.svg);
+    background: no-repeat center center url(./img/close_modal.svg);
     transition: all 300ms ease-in-out;
 }
 

@@ -1,4 +1,3 @@
-// import { isWindow } from 'jquery';
 import React, { useState, useRef, useEffect } from 'react';
 import './photoupload.css';
 
@@ -19,8 +18,8 @@ const Photoupload = () => {
             }
         }, []);
         setValidFiles([...filteredArr]);
-
     }, [selectedFiles]);
+
 
     const preventDefault = (e) => {
         e.preventDefault();
@@ -29,14 +28,26 @@ const Photoupload = () => {
 
     const dragOver = (e) => {
         preventDefault(e);
+
+        setErrorMessage('Поместите ваши фото сюда');
     }
 
     const dragEnter = (e) => {
         preventDefault(e);
+
     }
 
     const dragLeave = (e) => {
         preventDefault(e);
+        setErrorMessage('Добавьте или перетащите фото');
+    }
+
+    const even = (num) => {
+        if (num % 2 === 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     const fileDrop = (e) => {
@@ -112,23 +123,47 @@ const Photoupload = () => {
         reader.readAsDataURL(file);
         reader.onloadend = function (e) {
             let img = document.getElementById(`prev${n}`);
-            img.src = e.target.result
+            img.src = e.target.result;
+            if (!even(validFiles[n].angle / 90)) {
+                img.style.transform = `rotate(${validFiles[n].angle}deg) scale(1.2)`;
+            } else {
+                img.style.transform = `rotate(${validFiles[n].angle}deg) scale(1)`;
+            }
         }
     }
 
-    const rotate = (file, n) => {
+    const rotate = (n) => {
+        let img = document.getElementById(`prev${n}`);
+        if (!validFiles[n].angle) {
+            validFiles[n].angle = 0;
+        }
+        validFiles[n].angle += 90;
+        if (validFiles[n].angle > 360) {
+            validFiles[n].angle = 0;
+        }
+        if (!even(validFiles[n].angle / 90)) {
+            img.style.transform = `rotate(${validFiles[n].angle}deg) scale(1.2)`;
+        } else {
+            img.style.transform = `rotate(${validFiles[n].angle}deg) scale(1)`;
+        }
+        setValidFiles([...validFiles]);
 
     }
 
-    return (
+    const makeMain = (file, n) => {
+        validFiles.splice(n, 1);
+        setValidFiles([file, ...validFiles]);
+    }
 
+    return (
         <div className="getPhotoUpload">
-            {console.log(validFiles)}
             { validFiles.map((data, i) =>
                 <div key={i} className="getPhotoCard" onChange={!data.invalid ? preview(data, i) : removeFile(data.name)}>
                     <img id={`prev${i}`} />
                     <div className="getPhotoRotate" onClick={() => rotate(i)}></div>
                     <div className="getPhotoDelete" onClick={() => removeFile(data.name)}></div>
+                    {i === 0 && <div className="getPhotoMain">Главное фото</div>}
+                    {i > 0 && <div className="getPhotoMakeMainWrapper" onClick={() => makeMain(data, i)}><div className="getPhotoMakeMain">Сделать главной</div></div>}
                 </div>)
             }
             <div className="getPhotoCard"
@@ -146,7 +181,6 @@ const Photoupload = () => {
                     onChange={filesSelected}
                 />
             </div>
-
         </div>
     )
 }

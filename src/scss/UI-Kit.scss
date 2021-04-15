@@ -1,3 +1,11 @@
+$tp: #282c34;
+$ts: #ffffff;
+$prime: #ff6767;
+
+button {
+   border: none;
+   outline: none;
+}
 .wrapper {
    text-align: center;
    font-size: calc(10px + 2vmin);
@@ -6,4 +14,23 @@
 .theme {
    font-family: 'Roboto', sans-serif;
    font-weight: 500;
+}
+
+.button {
+   padding: 14px 10px;
+   font-size: 14px;
+   background-color: transparent;
+   color: $tp;
+   cursor: pointer;
+   &_outlined {
+      border: 1px solid $tp;
+      border-radius: 24px;
+      transition: all 350ms ease-in-out;
+      &:hover {
+         background-color: $prime;
+         color: $ts;
+         border: 1px solid $prime;
+         transition: all 350ms ease-in-out;
+      }
+   }
 }

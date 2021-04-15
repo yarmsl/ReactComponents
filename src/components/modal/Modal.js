@@ -54,4 +54,4 @@ export const Modal = ({ title, content, size, isOpen }) => {
 {/* <Modal {...modal} /> */ }
 
 // Событие
-// onClick={e => { modalOlen(e, 'sm/md/lg/xl', 'content, 'title если нужен') }}
+// onClick={e => { modalOlen(e, 'sm/md/lg/xl', 'content', 'title если нужен') }}
