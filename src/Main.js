@@ -9,19 +9,15 @@ export default function Main() {
    function modalOlen(e, size, content, title) {
       function smf() {
          setModal({ title: title, content: content, size: size, isOpen: false });
-         console.log(modal)
       }
       e.preventDefault();
       setModal({ title: title, content: content, size: size, isOpen: true });
-      console.log(modal);
       setTimeout(smf, 500);
    }
 
    return (
       <main className="main">
          <Parcer />
-
-
          <div className="mainDemo">
             <button onClick={e => { modalOlen(e, 'sm', <Parcer />) }} className="button button_outlined">Модальное окно sm</button>
             <button onClick={e => { modalOlen(e, 'md', 'Содержание', 'Среднее окно') }} className="button button_outlined">Модальное окно md</button>
