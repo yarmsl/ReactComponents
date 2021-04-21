@@ -2,16 +2,6 @@ import React, { useState } from 'react';
 import NavigateObject from '../../json/navigateObject.json';
 import './parcer.css';
 
-// for (let key in NavigateObject.category) {
-//    if (typeof(NavigateObject.category[key].subCategories) === 'object') {
-//       for (let i in NavigateObject.category[key].subCategories) {
-//          console.log(NavigateObject.category[key].subCategories[i]);
-//       }
-//    } else {
-//       console.log(NavigateObject.category[key]);
-//    }
-// }
-
 
 const Parcer = () => {
 
@@ -113,11 +103,13 @@ const Parcer = () => {
                return <option value={opt.id}>{opt.name}</option>
             })}
          </select>}
+
          {nav.cat3 && subCat_3.length > 0 && <select onChange={e => { setNav({ ...nav, cat4: e.target.value }) }}>
             {subCat_3.map(opt => {
                return <option value={opt.id}>{opt.name}</option>
             })}
          </select>}
+
          {console.log(nav)}
       </div>
    )
