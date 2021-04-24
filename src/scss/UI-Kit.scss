@@ -17,7 +17,17 @@ button {
    font-family: 'Roboto', sans-serif;
    font-weight: 500;
 
+   & input {
+      background: transparent;
+      color: $ts;
+      text-align: center;
+      outline: none;
+      border: none;
+   }
+
    & section {
+      max-width: 1000px;
+      min-height: 400px;
       padding: 12px;
       margin: 12px;
       border-radius: 12px;

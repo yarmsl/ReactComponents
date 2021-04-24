@@ -1,21 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './avatar.css';
 
 const Avatar = () => {
-
-    const user = {
-        name: 'Ярослав Макаров',
-        userpic: ''
-    };
+const [name, setName] = useState('Ярослав Макаров');
 
     function initials() {
-        let res;
-        if (this.indexOf(' ') !== -1) {
-          res = `${this.substr(0, 1)}${this.substr((this.indexOf(' ') + 1), 1)}`;
-        } else {
-          res = this.substr(0, 1);
-        }
-        return res;
+         return this.substr(0, 1);
       }
 
       function stringToColor() {
@@ -41,10 +31,15 @@ const Avatar = () => {
     String.prototype.initials = initials;
     String.prototype.toColor = stringToColor;
 
+    const handleChange = e => {
+      e.preventDefault();
+      setName(e.target.value)
+    }
+
     return (
         <div className="user">
-            <div className="user__avatar">{user.userpic && <img src={user.userpic} /> || <div className="user__initials" style={{ backgroundColor: `${user.name.toColor()}` }}>{user.name.initials()}</div>}</div>
-            <div className="user__name">{user.name}</div>
+            <div className="user__avatar">{<div className="user__initials" style={{ backgroundColor: `${name.toColor()}` }}>{name.initials()}</div>}</div>
+            <div className="user__name"><input value={name} onChange={e=>handleChange(e)} /></div>
         </div>
     )
 }

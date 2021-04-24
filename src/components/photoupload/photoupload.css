@@ -1,5 +1,4 @@
 .getPhotoUpload {
-    width: auto;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -137,5 +136,3 @@
 .file-input {
     display: none;
 }
-
-.getPhotoInfo {}
