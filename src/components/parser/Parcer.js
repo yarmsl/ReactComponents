@@ -82,13 +82,11 @@ const Parcer = () => {
    }
    subCategories_3(cat_3_f);
 
-
-
    return (
       <div className="parser">
          <select onChange={e => { setNav({ cat1: e.target.value }) }}>
             {category_1.map(opt => {
-               return (<option value={opt.id}>{opt.name}</option>)
+               return <option value={opt.id}>{opt.name}</option>
             })}
          </select>
 

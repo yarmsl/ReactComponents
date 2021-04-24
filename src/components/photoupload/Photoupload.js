@@ -24,23 +24,23 @@ const Photoupload = () => {
     const preventDefault = (e) => {
         e.preventDefault();
         // e.stopPropagation();
-    }
+    };
 
     const dragOver = (e) => {
         preventDefault(e);
 
         setErrorMessage('Поместите ваши фото сюда');
-    }
+    };
 
     const dragEnter = (e) => {
         preventDefault(e);
 
-    }
+    };
 
     const dragLeave = (e) => {
         preventDefault(e);
         setErrorMessage('Добавьте или перетащите фото');
-    }
+    };
 
     const even = (num) => {
         if (num % 2 === 0) {
@@ -48,7 +48,7 @@ const Photoupload = () => {
         } else {
             return false;
         }
-    }
+    };
 
     const fileDrop = (e) => {
         preventDefault(e);
@@ -56,22 +56,51 @@ const Photoupload = () => {
         if (files.length) {
             handleFiles(files);
         }
-    }
+    };
 
     const filesSelected = () => {
         if (fileInputRef.current.files.length) {
             handleFiles(fileInputRef.current.files);
         }
-    }
+    };
 
     const fileInputClicked = () => {
         fileInputRef.current.click();
-    }
+    };
 
     const handleFiles = (files) => {
         for (let i = 0; i < files.length; i++) {
             if (validateFile(files[i])) {
-                setSelectedFiles(prevArray => [...prevArray, files[i]]);
+
+                const reader = new FileReader();
+                reader.readAsDataURL(files[i]);
+                reader.onload = e => {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = () => {
+                        const elem = document.createElement('canvas');
+                        if (img.width >= img.height) {
+                            elem.width = 1200;
+                            elem.height = img.height * (1200 / img.width);
+                        } else {
+                            elem.height = 1200;
+                            elem.width = img.width * (1200 / img.height);
+                        }
+
+                        const ctx = elem.getContext('2d');
+                        ctx.drawImage(img, 0, 0, elem.width, elem.height);
+                        ctx.canvas.toBlob((blob) => {
+                            const file = new File([blob], files[i].name, {
+                                type: "image/webp",
+                                lastModified: Date.now(),
+
+                            });
+                            setSelectedFiles(prevArray => [...prevArray, file]);
+                        }, "image/webp", 0.7);
+
+                    };
+                };
+
                 setErrorMessage('Добавьте или перетащите фото');
             } else {
                 files[i]['invalid'] = true;
@@ -80,7 +109,7 @@ const Photoupload = () => {
                 setUnsupportedFiles(prevArray => [...prevArray, files[i]]);
             }
         }
-    }
+    };
 
     const validateFile = (file) => {
         const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -88,7 +117,7 @@ const Photoupload = () => {
             return false;
         }
         return true;
-    }
+    };
 
     const fileSize = (size) => {
         if (size === 0) {
@@ -98,11 +127,11 @@ const Photoupload = () => {
         const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
         const i = Math.floor(Math.log(size) / Math.log(k));
         return parseFloat((size / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    }
+    };
 
     const fileType = (fileName) => {
         return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
-    }
+    };
 
     const removeFile = (name) => {
         const index = validFiles.findIndex(e => e.name === name);
@@ -116,21 +145,20 @@ const Photoupload = () => {
             unsupportedFiles.splice(index3, 1);
             setUnsupportedFiles([...unsupportedFiles]);
         }
-    }
+    };
 
     const preview = (file, n) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onloadend = function (e) {
+        reader.onloadend = e => {
             let img = document.getElementById(`prev${n}`);
-            img.src = e.target.result;
-            if (!even(validFiles[n].angle / 90)) {
-                img.style.transform = `rotate(${validFiles[n].angle}deg) scale(1.2)`;
+            if (img) {
+                img.src = e.target.result;
             } else {
-                img.style.transform = `rotate(${validFiles[n].angle}deg) scale(1)`;
+                setErrorMessage('Крайне серьёзная ошибка, срочн нажмите alt F4');
             }
-        }
-    }
+        };
+    };
 
     const rotate = (n) => {
         let img = document.getElementById(`prev${n}`);
@@ -148,12 +176,16 @@ const Photoupload = () => {
         }
         setValidFiles([...validFiles]);
 
-    }
+    };
 
     const makeMain = (file, n) => {
         validFiles.splice(n, 1);
+        selectedFiles.splice(n, 1);
         setValidFiles([file, ...validFiles]);
-    }
+        setSelectedFiles([file, ...selectedFiles]);
+    };
+
+console.log(validFiles);
 
     return (
         <div className="getPhotoUpload">
