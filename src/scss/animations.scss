@@ -1,17 +1,19 @@
 @media (prefers-reduced-motion: no-preference) {
    .header__logo {
-      animation: logo-spin infinite 200s linear;
+      animation: logo-spin infinite 20s linear;
    }
 }
 
 @keyframes logo-spin {
    0% {
-      transform: rotate(0deg);
+      transform: rotate3d(0, 1, 0, 0deg);
+   }
 
+   50% {
+      transform: rotate3d(0, 1, 0, 180deg);
    }
 
    100% {
-      transform: rotate(360deg);
-
+      transform: rotate3d(0, 1, 0, 360deg);
    }
 }

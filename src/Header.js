@@ -7,7 +7,7 @@ export default function Header() {
       <header className="header">
          <Avatar />
          <img src={logo} className="header__logo" alt="logo" />
-         <h1 className="header__title">&#123; Test App &#125;</h1>
+         <h1 className="header__title">&#123; <span>React</span> Components &#125;</h1>
       </header>
    )
 }

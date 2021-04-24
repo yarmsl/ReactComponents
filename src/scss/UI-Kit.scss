@@ -1,11 +1,13 @@
 $tp: #282c34;
 $ts: #ffffff;
 $prime: #ff6767;
+$secondary: #4ec990;
 
 button {
    border: none;
    outline: none;
 }
+
 .wrapper {
    text-align: center;
    font-size: calc(10px + 2vmin);
@@ -14,6 +16,36 @@ button {
 .theme {
    font-family: 'Roboto', sans-serif;
    font-weight: 500;
+
+   & section {
+      padding: 12px;
+      margin: 12px;
+      border-radius: 12px;
+      box-shadow: 0 0 8px #282c3481;
+      transition: all 350ms ease-in-out;
+
+      &:hover {
+         transition: all 350ms ease-in-out;
+         box-shadow: 0 0 28px #282c3481;
+      }
+   }
+
+   & h1 {
+      font-size: calc(18px + 2vmin);
+      font-weight: 700;
+      margin: 8px;
+
+      & span {
+         color: $secondary;
+      }
+   }
+
+   & p {
+      &::first-letter {
+         color: $secondary;
+         font-weight: 700;
+      }
+   }
 }
 
 .button {
@@ -22,10 +54,12 @@ button {
    background-color: transparent;
    color: $tp;
    cursor: pointer;
+
    &_outlined {
       border: 1px solid $tp;
       border-radius: 24px;
       transition: all 350ms ease-in-out;
+
       &:hover {
          background-color: $prime;
          color: $ts;

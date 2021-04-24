@@ -86,29 +86,33 @@ const Parcer = () => {
       <div className="parser">
          <select onChange={e => { setNav({ cat1: e.target.value }) }}>
             {category_1.map(opt => {
-               return <option value={opt.id}>{opt.name}</option>
+               return <option key={opt.id} value={opt.id}>{opt.name}</option>
             })}
          </select>
 
          {nav.cat1 && <select onChange={e => { setNav({ ...nav, cat2: e.target.value }) }}>
             {subCat_1.map(opt => {
-               return <option value={opt.id}>{opt.name}</option>
+               return <option key={opt.id} value={opt.id}>{opt.name}</option>
             })}
          </select>}
 
          {nav.cat2 && subCat_2.length > 0 && <select onChange={e => { setNav({ ...nav, cat3: e.target.value }) }}>
             {subCat_2.map(opt => {
-               return <option value={opt.id}>{opt.name}</option>
+               return <option key={opt.id} value={opt.id}>{opt.name}</option>
             })}
          </select>}
 
          {nav.cat3 && subCat_3.length > 0 && <select onChange={e => { setNav({ ...nav, cat4: e.target.value }) }}>
             {subCat_3.map(opt => {
-               return <option value={opt.id}>{opt.name}</option>
+               return <option key={opt.id} value={opt.id}>{opt.name}</option>
             })}
          </select>}
-
-         {console.log(nav)}
+            <div>
+            {`Стэйт: ${(nav && nav.cat1) ? nav.cat1 : ''}
+            ${(nav.cat1 && nav.cat2) ? nav.cat2 : ''} 
+            ${(nav.cat2 && nav.cat3) ? nav.cat3 : ''} 
+            ${(nav.cat3 && nav.cat4) ? nav.cat4 : ''}`}
+            </div>
       </div>
    )
 }

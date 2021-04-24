@@ -186,8 +186,9 @@ const Photoupload = () => {
     };
 
 console.log(validFiles);
-
+let size = 0;
     return (
+        <>
         <div className="getPhotoUpload">
             { validFiles.map((data, i) =>
                 <div key={i} className="getPhotoCard" onChange={!data.invalid ? preview(data, i) : removeFile(data.name)}>
@@ -213,7 +214,14 @@ console.log(validFiles);
                     onChange={filesSelected}
                 />
             </div>
+            
         </div>
+        <div className="getPhotoInfo">
+            <span>Всего файлов: {validFiles.length} </span>
+            <span>Размер файлов: {validFiles.forEach(file => {
+                size += parseInt(file.size)
+            }) }{fileSize(size)}</span></div>
+        </>
     )
 }
 export default Photoupload;
