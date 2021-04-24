@@ -15,7 +15,7 @@ const [name, setName] = useState('Ярослав Макаров');
         var value;
         var strLength;
         if (!this) {
-          return color + '00A0AB';
+          return color + '4ec990';
         }
         strLength = this.length;
         for (i = 0; i < strLength; i++) {
