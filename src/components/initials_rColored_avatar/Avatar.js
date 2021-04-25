@@ -33,7 +33,7 @@ const [name, setName] = useState('Ярослав Макаров');
 
     const handleChange = e => {
       e.preventDefault();
-      setName(e.target.value)
+      setName(e.target.value);
     }
 
     return (

@@ -64,6 +64,8 @@ button {
    font-size: 14px;
    background-color: transparent;
    color: $tp;
+   white-space: nowrap;
+   margin: 10px;
    cursor: pointer;
 
    &_outlined {
