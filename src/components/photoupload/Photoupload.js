@@ -185,7 +185,7 @@ const Photoupload = () => {
         setSelectedFiles([file, ...selectedFiles]);
     };
 
-console.log(validFiles);
+// console.log(validFiles);
 let size = 0;
     return (
         <>
